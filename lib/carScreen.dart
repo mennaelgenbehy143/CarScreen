@@ -1,9 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+import 'package:gdsc/Circular.dart';
 import 'package:gdsc/MyThemeData.dart';
 
-class CarScreen extends StatelessWidget {
+class CarScreen extends StatefulWidget {
+  @override
+  State<CarScreen> createState() => _CarScreenState();
+}
 
+class _CarScreenState extends State<CarScreen> {
+  bool status = false;
+  double height = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -11,18 +19,18 @@ class CarScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: MyThemeData.color2,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Hello,Mark',
           style: TextStyle(color: Colors.black),
         ),
         actions: [
-          Icon(
+          const Icon(
             Icons.notifications_none_outlined,
             color: Colors.black,
           ),
           Container(
-            margin: EdgeInsets.all(14),
-            child: CircleAvatar(
+            margin: const EdgeInsets.all(14),
+            child: const CircleAvatar(
               backgroundImage: AssetImage('assets/images/avatar.png'),
             ),
           ),
@@ -36,22 +44,54 @@ class CarScreen extends StatelessWidget {
             color: MyThemeData.color2,
             child: Column(
               children: [
-                Text(
+                const Text(
                   'Lil Nas X',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'HIGHEST IN THE ROOM',
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
-                Image.asset(
-                  'assets/images/player.png',
+                // Image.asset(
+                //   'assets/images/player.png',
+                // ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Icon(
+                  Icons.pause_circle_filled,
+                  size: 50,
+                ),
+                Slider(
+                    activeColor: Colors.black,
+                    inactiveColor: Colors.white,
+                    min: 0,
+                    max: 100,
+                    value: height,
+                    onChanged: (value) {
+                      setState(() {
+                        height = value;
+                      });
+                    }),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.skip_previous),
+                    SizedBox(
+                      width: 150,
+                    ),
+                    Icon(Icons.skip_next),
+                  ],
                 ),
               ],
             ),
@@ -61,7 +101,7 @@ class CarScreen extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: MyThemeData.color3,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(200),
                   topLeft: Radius.circular(200),
                 ),
@@ -70,46 +110,37 @@ class CarScreen extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: [
+                  const Icon(
+                    Icons.minimize,
+                    color: Colors.white,
+                  ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Center(
                     child: Container(
-                      height: 180,
-                      width: 180,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 10,
-                              blurRadius: 7,
-                              offset: const Offset(0, 3), // changes position of shadow
-                            ),
-                          ],
-                          border: Border.all(
-                            width: 15,
-                            color:MyThemeData.color2,
-                          ),
-                          borderRadius: const BorderRadius.all(Radius.circular(100))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: Column(
-                          children:  [
-                            Icon(
-                              Icons.show_chart_outlined,
-                              color: MyThemeData.color2,
-                            ),
-                            Text(
-                              '300',
-                              style: MyThemeData.Themee.textTheme.headline2,
-                            ),
-                            Text(
-                              'Km',
-                              style: MyThemeData.Themee.textTheme.headline3,
-                            ),
-                          ],
-                        ),
+                      height: 160,
+                      width: 160,
+                      decoration: const BoxDecoration(
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     color: Colors.grey.withOpacity(0.2),
+                          //     spreadRadius: 10,
+                          //     blurRadius: 7,
+                          //     offset: const Offset(
+                          //         0, 3), // changes position of shadow
+                          //   ),
+                          // ],
+                          // border: Border.all(
+                          //   width: 15,
+                          //   color: MyThemeData.color2,
+                          // ),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(100)),
                       ),
+                      // child: Padding(
+                      //   padding: const EdgeInsets.all(25.0),
+                      child: Circle(),
                     ),
                   ),
                   const SizedBox(
@@ -250,11 +281,25 @@ class CarScreen extends StatelessWidget {
                                       const SizedBox(
                                         width: 15,
                                       ),
-                                      ImageIcon(
-                                        const AssetImage(
-                                            'assets/images/switch-on.png'),
-                                        color: MyThemeData.color2,
-                                        size: 50,
+                                      // ImageIcon(
+                                      //   const AssetImage(
+                                      //       'assets/images/switch-on.png'),
+                                      //   color: MyThemeData.color2,
+                                      //   size: 50,
+                                      // ),
+                                      FlutterSwitch(
+                                        height: 20.0,
+                                        width: 40.0,
+                                        padding: 4.0,
+                                        toggleSize: 15.0,
+                                        borderRadius: 10.0,
+                                        activeColor: MyThemeData.color2,
+                                        value: status,
+                                        onToggle: (value) {
+                                          setState(() {
+                                            status = value;
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),

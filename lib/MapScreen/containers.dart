@@ -14,8 +14,8 @@ Widget defaultContainer({
    Color? colorIcon ,
 
 })=>Container(
-  decoration: BoxDecoration(
-    color: Color(0xFF27292c),
+  decoration: const BoxDecoration(
+    color:  Color(0xFF27292c),
     borderRadius: BorderRadius.all(Radius.circular(20)),
   ),
   height: height,
@@ -26,7 +26,7 @@ Widget defaultContainer({
       Padding(
         padding: const EdgeInsets.all(15.0),
         child: Text(title!,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -39,14 +39,14 @@ Widget defaultContainer({
             color: MyThemeData.color2,),
           Text
             (text1!,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 50,
             ),
           ),
           Text(text2!,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.bold,
               fontSize: 20,
